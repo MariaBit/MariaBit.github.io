@@ -24,5 +24,19 @@
     <button onclick="window.open('https://example.com', '_blank')">
       Open new tab
     </button>
+      <button onclick="goFull()">Go Fullscreen</button>
+
+  <script>
+    function goFull() {
+      const elem = document.documentElement; // весь документ
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { // Safari
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { // IE/Edge
+        elem.msRequestFullscreen();
+      }
+    }
+  </script>
 </body>
 </html>
