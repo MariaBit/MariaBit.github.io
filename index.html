@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Popup Fullscreen Test</title>
@@ -12,19 +12,43 @@
 
   <script>
     function openPopup() {
-      const popup = window.open("", "popup", "width=400,height=400");
+      const popup = window.open("", "popup", "width=600,height=400");
       if (popup) {
         popup.document.write(`
           <!DOCTYPE html>
-          <html>
+          <html lang="ru">
           <head>
             <meta charset="UTF-8">
             <title>Popup Window</title>
+            <style>
+              body {
+                background:black;
+                color:white;
+                display:flex;
+                flex-direction:column;
+                justify-content:center;
+                align-items:center;
+                height:100vh;
+                margin:0;
+                font-family:sans-serif;
+              }
+              button {
+                padding:20px 40px;
+                font-size:24px;
+                background:#00aaff;
+                border:none;
+                border-radius:12px;
+                color:white;
+                cursor:pointer;
+              }
+            </style>
           </head>
-          <body style="background:black; color:white; display:flex; justify-content:center; align-items:center; height:100vh; margin:0; font-size:24px; font-family:sans-serif;">
-            <div>Popup window</div>
+          <body>
+            <h1>Вы в Fullscreen</h1>
+            <button onclick="alert('Нажата кнопка в полноэкранном режиме')">
+              Тестовая кнопка
+            </button>
             <script>
-              // сразу уходим в fullscreen
               document.documentElement.requestFullscreen();
             <\/script>
           </body>
