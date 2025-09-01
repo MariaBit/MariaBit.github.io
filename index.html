@@ -3,68 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <title>Popup Fullscreen Test</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #222;
-      color: #fff;
-    }
-    button {
-      padding: 16px 32px;
-      font-size: 18px;
-      background: #00aaff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  </style>
 </head>
-<body>
-  <button onclick="openPopup()">Open Popup</button>
+<body style="background:#222; color:#fff; font-family:sans-serif; text-align:center; padding-top:50px;">
+  <h2>Тест pop-up fullscreen</h2>
+  <a href="#" onclick="openPopup(); return false;" style="font-size:20px; color:#00aaff;">
+    👉 Открыть pop-up
+  </a>
 
   <script>
     function openPopup() {
-      // открываем новое окно (popup)
       const popup = window.open("", "popup", "width=400,height=400");
-
       if (popup) {
         popup.document.write(`
+          <!DOCTYPE html>
           <html>
-            <head>
-              <title>Popup</title>
-              <style>
-                body {
-                  background: black;
-                  color: white;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  height: 100vh;
-                  margin: 0;
-                  font-size: 24px;
-                  font-family: sans-serif;
-                }
-                button {
-                  padding: 16px 32px;
-                  font-size: 18px;
-                }
-              </style>
-            </head>
-            <body>
-              <div>Popup Window</div>
-              <button onclick="document.documentElement.requestFullscreen()">Go Fullscreen</button>
-            </body>
+          <head>
+            <meta charset="UTF-8">
+            <title>Popup Window</title>
+          </head>
+          <body style="background:black; color:white; display:flex; justify-content:center; align-items:center; height:100vh; margin:0; font-size:24px; font-family:sans-serif;">
+            <div>Popup window</div>
+            <script>
+              // сразу уходим в fullscreen
+              document.documentElement.requestFullscreen();
+            <\/script>
+          </body>
           </html>
         `);
         popup.document.close();
       } else {
-        alert("Popup blocked by browser");
+        alert("Popup заблокирован браузером");
       }
     }
   </script>
