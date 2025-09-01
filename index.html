@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Fullscreen Test</title>
+  <title>Popup Fullscreen Test</title>
   <style>
     body {
       font-family: sans-serif;
@@ -10,36 +10,63 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #111;
-      color: #fff;
       margin: 0;
+      background: #222;
+      color: #fff;
     }
     button {
       padding: 16px 32px;
       font-size: 18px;
-      cursor: pointer;
       background: #00aaff;
-      color: #fff;
+      color: white;
       border: none;
       border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <button onclick="goFull()">Go Fullscreen</button>
+  <button onclick="openPopup()">Open Popup</button>
 
   <script>
-    function goFull() {
-      const elem = document.documentElement; // весь документ
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.webkitRequestFullscreen) { // Safari
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { // IE/Edge
-        elem.msRequestFullscreen();
+    function openPopup() {
+      // открываем новое окно (popup)
+      const popup = window.open("", "popup", "width=400,height=400");
+
+      if (popup) {
+        popup.document.write(`
+          <html>
+            <head>
+              <title>Popup</title>
+              <style>
+                body {
+                  background: black;
+                  color: white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  height: 100vh;
+                  margin: 0;
+                  font-size: 24px;
+                  font-family: sans-serif;
+                }
+                button {
+                  padding: 16px 32px;
+                  font-size: 18px;
+                }
+              </style>
+            </head>
+            <body>
+              <div>Popup Window</div>
+              <button onclick="document.documentElement.requestFullscreen()">Go Fullscreen</button>
+            </body>
+          </html>
+        `);
+        popup.document.close();
+      } else {
+        alert("Popup blocked by browser");
       }
     }
   </script>
 </body>
 </html>
-
